@@ -1,21 +1,17 @@
-# Exp.No:25  
-## Hierarchical Inheritance
+# Exp.No:24  
+## Multi-level Inheritance
 ---
 ### AIM  
-To write a Python program to get the name, attendance and Id of a student and check if they are eligible for the Next Module using multiple inheritance.
+To write a Python program to get the name, age and ID of a person and display them using Multilevel Inheritance.
 
 ---
 ### ALGORITHM
-1. Begin the program.  
-2. Create a base class `Student` with an `__init__` method to initialize `name` and `id`.  
-3. Create a base class `Attendance` with an `__init__` method to initialize `attendance`.  
-4. Create a derived class `Module` that inherits from both `Student` and `Attendance`.  
-   - Define an `__init__` method to initialize `name`, `id`, and `attendance`.  
-   - Define a method `check_eligibility()` to check if attendance is greater than 80.  
-   - If attendance > 80, print `"Eligible for Module Exam"`.  
-   - Otherwise, print `"Not Eligible for Module Exam"`.  
-5. Accept input for `name`, `id`, and `attendance` from the user.  
-6. Create an object of the `Module` class and call `check_eligibility()`.  
+1. Define the `Person` class with an `__init__` method that initializes `name` and `age`.  
+2. Define the `PersonDetails` class that inherits from `Person` with an `__init__` method that initializes `name`, `age`, and `person_id` using `super()`.  
+3. Define the `DisplayDetails` class that inherits from `PersonDetails` with an `__init__` method that calls `super()` to initialize all attributes.  
+4. Define a `show_details()` method inside `DisplayDetails` that prints `name`, `age`, and `person_id`.  
+5. Accept `name`, `age`, and `person_id` from the user.  
+6. Create an instance of `DisplayDetails` and call `show_details()`.  
 7. Terminate the program.
 
 ---
@@ -23,38 +19,33 @@ To write a Python program to get the name, attendance and Id of a student and ch
 ```python
 # Reg.No- 212222060100
 # Name- Jothivanan T
-class Student:
-    def __init__(self, name, id):
+class Person:
+    def __init__(self, name, age):
         self.name = name
-        self.id = id
+        self.age = age
 
-class Attendance:
-    def __init__(self, attendance):
-        self.attendance = attendance
+class PersonDetails(Person):
+    def __init__(self, name, age, person_id):
+        super().__init__(name, age)
+        self.person_id = person_id
 
-class Module(Student, Attendance):
-    def __init__(self, name, id, attendance):
-        Student.__init__(self, name, id)
-        Attendance.__init__(self, attendance)
+class DisplayDetails(PersonDetails):
+    def __init__(self, name, age, person_id):
+        super().__init__(name, age, person_id)
 
-    def check_eligibility(self):
-        print(self.name)
-        print(self.id)
-        if self.attendance > 80:
-            print("Eligible for Module Exam")
-        else:
-            print("Not Eligible for Module Exam")
+    def show_details(self):
+        print(self.name, self.age, self.person_id)
 
 name = input()
-id = int(input())
-attendance = int(input())
-obj = Module(name, id, attendance)
-obj.check_eligibility()
+age = int(input())
+person_id = int(input())
+person = DisplayDetails(name, age, person_id)
+person.show_details()
 ```
 
 ### OUTPUT
-<img width="684" height="284" alt="image" src="https://github.com/user-attachments/assets/23691f16-e6da-4732-96e6-7793861fc2b7" />
+<img width="545" height="204" alt="image" src="https://github.com/user-attachments/assets/80b499bf-aec1-493f-b5ca-63537e186937" />
 
 
 ### RESULT
-Thus, the Python program to check student eligibility for the Next Module using multiple inheritance has been successfully executed and the output is verified.
+Thus, the Python program to get the name, age and ID of a person and display them using Multilevel Inheritance has been successfully executed and the output is verified.
